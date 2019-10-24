@@ -43,15 +43,15 @@ mount -t nfs nfs_server:nfs_path mount_path
 if mountpoint -q "mount_path"; then
 
   echo "Verifying if the directory already exist"
-  if [ -d /mnt/documentos/backups/pgz-srv-ds/bkp_diario_Mysql/$(date +"%m-%Y") ]; then
+  if [ -d remote_path$(date +"%m-%Y") ]; then
   echo "Copying the files"
-    cp $BKP_DIR/* /mnt/documentos/backups/pgz-srv-ds/bkp_diario_Mysql//$(date +"%m-%Y")
+    cp $BKP_DIR/* /remote_path//$(date +"%m-%Y")
     umount /mnt/documentos
   else
   echo "Create the directory and copy the files"
-    mkdir -p /mnt/documentos/backups/pgz-srv-ds/bkp_diario_Mysql/$(date +"%m-%Y")
-    cp $BKP_DIR/* /mnt/documentos/backups/pgz-srv-ds/bkp_diario_Mysql//$(date +"%m-%Y")
-    umount /mnt/documentos
+    mkdir -p /remote_path/$(date +"%m-%Y")
+    cp $BKP_DIR/* /remote_path//$(date +"%m-%Y")
+    umount mount_path
   fi
 else
   echo "It's not possible to mount the path"
